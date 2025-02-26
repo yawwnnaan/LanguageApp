@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Result</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Test Result</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'study' %}">Study</a></li>
+            <li><a href="{% url 'test' %}">Test</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Your Score: {{ score }} / {{ total }}</h2>
+        <p>Thank you for taking the test!</p>
+    </main>
+</body>
+</html>

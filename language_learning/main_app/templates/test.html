@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Test</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Take a Test</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'study' %}">Study</a></li>
+            <li><a href="{% url 'test' %}">Test</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Test Questions</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for i, test in tests.items %}
+                <div>
+                    <p><strong>{{ test.question }}</strong></p>
+                    <label>
+                        <input type="radio" name="question_{{ i }}" value="{{ test.correct_answer }}"> {{ test.correct_answer }}
+                    </label><br>
+                    {% for answer in test.incorrect_answers %}
+                        <label>
+                            <input type="radio" name="question_{{ i }}" value="{{ answer }}"> {{ answer }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit Test</button>
+        </form>
+    </main>
+</body>
+</html>
